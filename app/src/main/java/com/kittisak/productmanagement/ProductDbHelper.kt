@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 
-class ProductDbHelper(activity: MainActivity) {
     class ProductDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
         companion object {
@@ -101,28 +100,25 @@ class ProductDbHelper(activity: MainActivity) {
             }
         }
 
-        // อัพเดทสินค้า
         fun updateProduct(product: Product): Int {
-            val db = writableDatabase
-            val values = ContentValues().apply {
-                put(COLUMN_NAME, product.name)
-                put(COLUMN_DESCRIPTION, product.description)
-                put(COLUMN_PRICE, product.price)
-                put(COLUMN_QUANTITY, product.quantity)
-                put(COLUMN_IMAGE_PATH, product.imagePath)
-            }
-            val rowsAffected =
-                db.update(TABLE_NAME, values, "$COLUMN_ID=?", arrayOf(product.id.toString()))
+                val db = writableDatabase
+                val values = ContentValues().apply {
+                    put(COLUMN_NAME, product.name)
+                    put(COLUMN_DESCRIPTION, product.description)
+                    put(COLUMN_PRICE, product.price)
+                    put(COLUMN_QUANTITY, product.quantity)
+                    put(COLUMN_IMAGE_PATH, product.imagePath)
+                }
+                val rowsAffected =
+                    db.update(TABLE_NAME, values, "$COLUMN_ID=?", arrayOf(product.id.toString()))
             db.close()
             return rowsAffected
         }
-
-        // ลบสินค้า
-        fun deleteProduct(id: Int): Int {
-            val db = writableDatabase
-            val rowsDeleted = db.delete(TABLE_NAME, "$COLUMN_ID=?", arrayOf(id.toString()))
-            db.close()
-            return rowsDeleted
-        }
+            // ลบสินค้า
+            fun deleteProduct(id: Int): Int {
+                val db = writableDatabase
+                val rowsDeleted = db.delete(TABLE_NAME, "$COLUMN_ID=?", arrayOf(id.toString()))
+                db.close()
+                return rowsDeleted
+            }
     }
-}

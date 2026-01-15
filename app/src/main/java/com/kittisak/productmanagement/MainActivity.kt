@@ -8,11 +8,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kittisak.productmanagement.databinding.ActivityMainBinding
+import com.kittisak.productmanagement.ProductDbHelper
 
 
-private var Any.adapter: ProductAdapter
-private var Any.layoutManager: LinearLayoutManager
-private val ActivityMainBinding.recyclerViewProducts: Any
+private lateinit var binding: ProductAdapter
+private lateinit var dbHelper: LinearLayoutManager
+private lateinit var productAdapter: ProductAdapter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -41,14 +42,14 @@ class MainActivity : AppCompatActivity() {
         dbHelper = ProductDbHelper(this)
 
         // ตั้งค่า RecyclerView
-        binding.recyclerViewProducts.layoutManager = LinearLayoutManager(this)
+        binding.recyclerViewProduct.layoutManager = LinearLayoutManager(this)
         productAdapter = ProductAdapter(
             emptyList(),
             onItemClick = { product -> showProductDetail(product) },
             onEditClick = { product -> editProduct(product) },
             onDeleteClick = { product -> deleteProduct(product) }
         )
-        binding.recyclerViewProducts.adapter = productAdapter
+        binding.recyclerViewProduct.adapter = productAdapter
 
         // ปุ่มเพิ่มสินค้า (FAB)
         binding.fabAddProduct.setOnClickListener {

@@ -4,7 +4,7 @@ package com.kittisak.productmanagement
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.kittisak.product_management.databinding.ActivityProductDetailBinding
+import com.kittisak.productmanagement.databinding.ActivityProductDetailBinding
 
 class ProductDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProductDetailBinding

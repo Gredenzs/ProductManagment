@@ -10,11 +10,7 @@ import com.kittisak.productmanagement.databinding.ActivityAddEditProductBinding
 import java.io.File
 import java.io.FileOutputStream
 
-private val T.name: Any
-private val T.description: Any
-private val T.price: Any
-private val T.quantity: Any
-private val T.imagePath: String?
+
 
 class AddEditProductActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddEditProductBinding
